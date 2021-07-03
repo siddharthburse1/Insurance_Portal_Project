@@ -1,0 +1,197 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        .customer_choose_policy {
+            margin: auto;
+            text-align: center;
+        }
+        .policy_number, .customer_id {
+            cursor: not-allowed;
+        }
+        .error {
+            visibility: visible;
+            font-weight: bold;
+            color: red;
+        }
+        .choose_policy_body, .choose_policy_form {
+            margin: auto;
+        }
+        .select_policy {
+            margin-left: 450px;
+        }
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+        td {
+            padding: 10px;
+            padding-right: 10px;
+            position: relative;
+        }
+        label {
+            font-weight: bold;
+            color: slateblue;
+        }
+        input, select {
+            width: 200px;
+            height: 30px;
+            border: 2px solid black;
+        }
+        h1 {
+            color: steelblue;
+        }
+        .header, .choose_policy_form {
+            text-align: center;
+        }
+        h2 {
+            color:indigo;
+        }
+        .choosePolicyBtn {
+            width: 120px;
+            height: 40px;
+            background-color: #1e90ff;
+            border: none;
+            color: white;
+            font-weight: bold;
+            font-size: 20px;
+            border-radius: 10px;
+            cursor: pointer;
+        }
+        .button {
+            margin: auto;
+            text-align: center;
+            padding: 20px;
+        }
+        .sum_assured {
+            margin: auto;
+            float: left;
+        }
+        .premium_amount {
+            margin: auto;
+            float: right;
+        }
+        .policy_term {
+            margin: auto;
+            text-align: center;
+            margin-top: 50px;
+            margin-left: 10px;
+        }
+        .sum_premium_term {
+            margin: auto;
+            text-align: center;
+        }
+        .policyBtn {
+            width: 120px;
+            height: 40px;
+            background-color: #1e90ff;
+            border: none;
+            color: white;
+            font-weight: bold;
+            font-size: 20px;
+            border-radius: 10px;
+            cursor: pointer;
+        }
+        .button {
+            margin: auto;
+            text-align: center;
+            padding: 20px;
+        }
+    </style>
+</head>
+<body>
+    <div class="choose_policy_body">
+        <div class="header">
+            <h1>QVY Insurance Online</h1>
+        </div>
+        <div class="customer_choose_policy">
+            <h2>Choose Policy</h2>
+        </div>
+        <form method="post" name="choose_policy_form" id="choose_policy_form" class="choose_policy_form">
+            <table class="select_policy">
+                <tbody>
+                    <tr>
+                        <td><label for="customer_id">Customer ID</label></td>
+                        <td>
+                            <input type="number" class="customer_id" id="customer_id" name="customer_id" value="{{ cust_id }}" readonly>
+                        </td>
+                        <td><small class="error"></small></td>
+                    </tr>
+                    <tr>
+                        <td><label for="policy_number">Policy Number</label></td>
+                        <td>
+                            <input type="number" class="policy_number" id="policy_number" name="policy_number" value="{{ policy_number }}" readonly>
+                        </td>
+                        <td><small class="error"></small></td>
+                    </tr>
+                    <tr>
+                        <td><label for="policy_type">Policy Type</label></td>
+                        <td>
+                            <select name="policy_type" id="policy_type">
+                                <option value="">Choose Policy Type</option>
+                                <option value="Gen.Ins">Gen.Ins</option>
+                                <option value="Health">Health</option>
+                                <option value="Motor">Motor</option>
+                            </select>
+                        </td>
+                        <td><small class="error"></small></td>
+                    </tr>
+                    <tr>
+                        <td><label for="policy_title">Policy Title</label></td>
+                        <td>
+                            <select name="policy_title" id="policy_title">
+                                <option value="">Select Policy</option>
+                                <option value="Jandhan">Jandhan</option>
+                                <option value="BimaGold">BimaGold</option>
+                                <option value="Vridhdhi">Vridhdhi</option>
+                                <option value="ChildCareer">ChildCareer</option>
+                                <option value="Floater">Floater</option>
+                                <option value="Conventional">Conventional</option>
+                            </select>
+                        </td>
+                        <td><small class="error"></small></td>
+                    </tr>
+                </tbody>
+            </table>
+            <div class="sum_premium_term">
+                <div class="sum_assured">
+                    <table class="sum_assured_table">
+                        <tbody>
+                            <tr>
+                                <td><label for="sum">Sum Assured (Rs)</label></td>
+                                <td><input type="number" min=0 class="sum" id="sum" name="sum"></td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+                <div class="premium_amount">
+                    <table class="premium_amount_table">
+                        <tbody>
+                            <tr>
+                                <td><label for="premium">Premium Amount (Rs)</label></td>
+                                <td><input type="number" min=0 class="premium" id="premium" name="premium"></td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+                <div class="policy_term">
+                    <table class="policy_term_table">
+                        <tbody>
+                            <tr>
+                                <td><label for="term">Policy Term (Yrs)</label></td>
+                                <td><input type="number" min=0 class="term" id="term" name="term"></td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+            <div class="button">
+                <input type="submit" value="Submit" name="policyBtn" id="policyBtn" class="policyBtn">
+            </div>
+        </form>
+    </div>
+</body>
+</html>
