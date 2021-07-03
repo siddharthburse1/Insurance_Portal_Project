@@ -1,0 +1,169 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <style>
+        .form {
+            text-align: center;
+        }
+        body {
+    
+            text-align: center;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+        .abc {
+            font-weight: bold;
+            font-size: 50px;
+            color: red;
+        }
+        .airline {
+            font-weight: bold;
+            font-size: 25px;
+            color: #00bfff;
+        }
+        .content {
+            margin: auto;
+            text-align: center;
+        }
+        .airlineName {
+            position: fixed;
+            top: -3%;
+        }
+        .headerName {
+            color: steelblue;
+            font-size: 35px;
+            position: relative;
+        }
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: auto;
+        }
+        th {
+            padding: 8px;
+            border-collapse: collapse;
+            border:1px solid black;
+            background-color: steelblue; 
+        }
+        td {
+            border: 1px solid black;
+            text-align: left;
+            padding: 11px;
+        }
+        .previous {
+            float: left;
+            margin-left: 20px;
+            color: #4b0082;
+            font-weight: bold;
+            font-size: 20px;
+        }
+        .next {
+            float: right;
+            margin-right: 20px;
+            color: #4b0082;
+            font-weight: bold;
+            font-size: 20px;
+        }
+        .home {
+            text-align: center;
+            color: #1f1f1f;
+            font-weight: bold;
+            text-decoration: none;
+            font-size: 22px;
+        }
+        .homeLink {
+            margin-right: 10px;
+            margin-top: 20px;
+            float: right;
+        }
+        .id {
+            float: right;
+        }
+        label {
+            font-weight: bold;
+            color: slateblue;
+        }
+        input {
+            width: 200px;
+            height: 30px;
+            border: 2px solid black;
+        }
+        .customer_id {
+            cursor: not-allowed;
+        }
+        </style>
+
+        <!-- IF block will get executed if a page has a custom title -->
+        {% if title %}
+            <title>Insurance Portal - {{ title }}</title>
+
+        <!-- ELSE block will get executed if a page does not have a custom title -->
+        {% else %}
+            <title>Insurance Portal</title>
+        {% endif %}
+
+    </head>
+    <body>
+        <div class="content">
+            <div class="ABCAirline">
+                <p class="airlineName"><small class="abc">Insurance</small><sub class="airline">Portal</sub></p>
+            </div>
+            <div class="homeLink">
+                <a class="home" href="/customer-home">Back To Home</a>
+            </div>
+            <br>
+            <br>
+            <br>
+            <div class="header">
+                <h1 class="headerName"> Policy List</h1>
+            </div>
+            <div class="id">
+                <label for="customer_id">Customer ID</label>
+                <input type="number" value="{{ customer_id }}" class="customer_id" readonly>
+            </div>
+            <br>
+            <br>
+            <br>
+            <form class="form" id="form" name="form" method="post">
+                <table class="table">
+                    <tbody>
+                        <table>
+                            <tr>
+                            <th>Policy No</th>
+                            <th>Commence Date</th>
+                            <th>Status</th>
+                            <th>Policy Type</th>
+                            <th>Policy Title</th>
+                            <th>Next Due</th>
+                            <th>Premium Amount</th>
+                            <th>Sum Assured</th>
+                            <th>Nominee Reg (Yes/No)</th>
+                            </tr>
+                            {% for data in policy_history %}
+                            <tr>
+                            <td>{{ data[0] }}</td>
+                            <td>{{ data[1] }}</td>
+                            <td>Active</td>
+                            <td>{{ data[2] }}</td>
+                            <td>{{ data[3] }}</td>
+                            <td>{{ next_due }}</td>
+                            <td>{{ data[4] }}</td>
+                            <td>{{ data[5] }}</td>
+                            <td>Yes</td>
+                            </tr>
+                            {% endfor %}
+                        </table>
+                    </tbody>
+                </table>
+                <br>
+                {% if prev >= 1 %}
+                    <a class="previous" href="/view-policy/table/{{ prev }}" >&lt;&lt; Previous</a>
+                {% else %}
+                    <a class="next" href="/view-policy/table/{{ next }}" >Next &gt;&gt;</a>
+                {% endif %}
+            </form>
+        </div>
+    </body>
+</html>
