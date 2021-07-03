@@ -1,0 +1,194 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script>
+        function input_validation() {
+            register_name = document.register_form.register_name.value
+            email = document.register_form.register_email.value
+            password = document.register_form.register_password.value
+            address = document.register_form.register_address.value
+            contact = document.register_form.register_contact.value
+            nominee = document.register_form.register_nominee.value
+            relation = document.register_form.register_relation.value
+
+            if (register_name == "") {
+                document.getElementById("errorName").innerHTML = "Name is Required!";
+                return false
+            } else if (register_name.length > 50) {
+                document.getElementById("errorName").innerHTML = "Name must contain less than 50 characters!";
+                return false
+            }
+
+            if (email == "") {
+                document.getElementById("errorEmail").innerHTML = "Email is Required!";
+                return false
+            }
+
+            if (password == "") {
+                document.getElementById("errorPassword").innerHTML = "Password is Required!";
+                return false
+            } else if (password.length < 8) {
+                document.getElementById("errorPassword").innerHTML = "Password must contain atleast 8 characters!";
+                return false
+            } else if (password.length > 30) {
+                document.getElementById("errorPassword").innerHTML = "Password must contain less than 30 characters!";
+                return false
+            }
+
+            if (address == "") {
+                document.getElementById("errorAddress").innerHTML = "Address is Required!";
+                return false
+            } else if (address.length > 100) {
+                document.getElementById("errorAddress").innerHTML = "Address must contain less than 100 characters!";
+                return false
+            }
+
+            if (contact == "") {
+                document.getElementById("errorContact").innerHTML = "Contact Number is Required!";
+                return false
+            } else if (contact.length > 10 || contact.length < 10) {
+                document.getElementById("errorContact").innerHTML = "Contact must contain 10 digits";
+                return false
+            }
+
+            if (nominee == "") {
+                document.getElementById("errorNominee").innerHTML = "Nominee is Required!";
+                return false
+            } else if (nominee.length > 50) {
+                document.getElementById("errorNominee").innerHTML = "Nominee Name must be less than 50 characters!";
+                return false
+            }
+
+            if (relation == "") {
+                document.getElementById("errorRelation").innerHTML = "Relationship with Nominee is Required!";
+                return false
+            }
+            return true
+        }
+    </script>
+    <style>
+        .error {
+            visibility: visible;
+            font-weight: bold;
+            color: red;
+        }
+        .register_body, .register_form {
+            margin: auto;
+        }
+        table {
+            margin-left: 450px;
+        }
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+        td {
+            padding-right: 10px;
+            position: relative;
+        }
+        label {
+            font-weight: bold;
+            color: slateblue;
+        }
+        input {
+            width: 200px;
+            height: 30px;
+            border: 2px solid black;
+        }
+        textarea {
+            width: 200px;
+            border: 2px solid black;
+        }
+        h1 {
+            color: steelblue;
+        }
+        .header, .customer_registration {
+            text-align: center;
+        }
+        h2 {
+            color:indigo;
+        }
+        .registerBtn {
+            width: 120px;
+            height: 40px;
+            background-color: #1e90ff;
+            border: none;
+            color: white;
+            font-weight: bold;
+            font-size: 20px;
+            border-radius: 10px;
+            cursor: pointer;
+        }
+        .button {
+            margin: auto;
+            text-align: center;
+            padding: 20px;
+        }
+        .register_id {
+            cursor: not-allowed;
+        }
+    </style>
+</head>
+<body>
+    <div class="register_body">
+        <div class="header">
+            <h1>QVY Insurance Online</h1>
+        </div>
+        <div class="customer_registration">
+            <h2>Customer Registration</h2>
+        </div>
+        <form method="post" class="register_form" name="register_form" id="register_form" onsubmit="return input_validation()">
+            <table>
+                <tbody>
+                    <tr>
+                        <td><label>Customer Id</label></td>
+                        <td><input type="text" placeholder="ID" class="register_id" id="register_id" name="register_id" value="{{ random_id }}" readonly></td>
+                        <td><small class="error" id="errorId"></small></td>
+                    </tr>
+                    <tr>
+                        <td><label>Name</label></td>
+                        <td><input type="text" placeholder="Name" class="register_name" id="register_name" name="register_name"></td>
+                        <td><small class="error" id="errorName"></small></td>
+                    </tr>
+                    <tr>
+                        <td><label>Email</label></td>
+                        <td><input type="email" placeholder="Email" class="register_email" id="register_email" name="register_email"></td>
+                        <td><small class="error" id="errorEmail"></small></td>
+                    </tr>
+                    <tr>
+                        <td><label>Password</label></td>
+                        <td><input type="password" placeholder="Password" class="register_password" id="register_password" name="register_password"></td>
+                        <td><small class="error" id="errorPassword"></small></td>
+                    </tr>
+                    <tr>
+                        <td><label>Address</label></td>
+                        <td><textarea name="register_address" id="register_address" class="register_address" cols="30" rows="6"></textarea></td>
+                        <td><small class="error" id="errorAddress"></small></td>
+                    </tr>
+                    <tr>
+                        <td><label>Contact #</label></td>
+                        <td><input type="number" min="0" placeholder="Contact Number" class="register_contact" id="register_contact" name="register_contact"></td>
+                        <td><small class="error" id="errorContact"></small></td>
+                    </tr>
+                    <tr>
+                        <td><label>Nominee Name</label></td>
+                        <td><input type="text" placeholder="Nominee Name" class="register_nominee" id="register_nominee" name="register_nominee"></td>
+                        <td><small class="error" id="errorNominee"></small></td>
+                    </tr>
+                    <tr>
+                        <td><label>Relationship with<br> Nominee</label></td>
+                        <td><input type="text" placeholder="Relationship" class="register_relation" id="register_relation" name="register_relation"></td>
+                        <td><small class="error" id="errorRelation"></small></td>
+                    </tr>
+                </tbody>
+            </table>
+            <div class="button">
+                <input type="submit" value="Register" name="registerBtn" id="registerBtn" class="registerBtn">
+            </div>
+        </form>
+    </div>
+</body>
+</html>
